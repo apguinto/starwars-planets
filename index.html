@@ -1,0 +1,173 @@
+<html lang="en">
+<head>
+    <title>Star Wars Planets</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        body{
+            padding: 50px;
+            background-image: url('https://static.wikia.nocookie.net/starwars/images/c/cc/Star-wars-logo-new-tall.jpg/revision/latest/scale-to-width-down/1000?cb=20190313021755');
+            background-position: center;
+            text-align: center;
+        }
+
+        .box{
+            margin: auto;
+            border-radius: 25px;
+            height: 500px;
+            width: 320px;
+            background-color: #ffffff;
+            opacity: 95%;
+            justify-content: center;
+            box-shadow: 0 0 .2rem #fff,
+                        0 0 .2rem #fff,
+                        0 0 2rem #900,
+                        0 0 0.8rem #900,
+                        0 0 2.8rem #900,
+                        inset 0 0 1.3rem #900; 
+        }
+
+        .title {
+            font-family: Tahoma;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 36px;
+        }
+
+        .name {
+            font-family: Tahoma;
+            text-align: center;
+            font-weight: bold;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .description{
+            font-family: Tahoma;
+            text-align: left;
+            margin-left: 15px;
+            margin-right: 30px;
+            margin-top: 15px;
+            margin-bottom: 3px;
+            font-size: 14px;
+        }
+
+        .climate{
+            font-family: Tahoma;
+            text-align: left;
+            margin-left: 15px;
+            margin-right: 30px;
+            margin-bottom: 3px;
+            font-size: 14px;
+        }
+
+        .diameter{
+            font-family: Tahoma;
+            text-align: left;
+            margin-left: 15px;
+            margin-right: 30px;
+            margin-bottom: 3px;
+            font-size: 14px;
+        }
+
+        .gravity{
+            font-family: Tahoma;
+            text-align: left;
+            margin-left: 15px;
+            margin-right: 30px;
+            margin-bottom: 3px;
+            font-size: 14px;
+        }
+
+        .population{
+            font-family: Tahoma;
+            text-align: left;
+            margin-left: 15px;
+            margin-right: 30px;
+            margin-bottom: 3px;
+            font-size: 14px;
+        }
+
+        .terrain{
+            font-family: Tahoma;
+            text-align: left;
+            margin-left: 15px;
+            margin-right: 30px;
+            margin-bottom: 3px;
+            font-size: 14px;
+        }
+
+        .picture{
+            width: 100px;
+            
+        }
+
+        .footer{
+            font-family: Tahoma;
+            font-style: italic;
+            margin-top: 15px;
+            text-align: center;
+            opacity: 100%;
+        }
+
+    </style>
+
+    <script>
+        const getPlanets = async() => {
+            let planetId = document.getElementById('planet-id').value
+            let response = await fetch ('https://www.swapi.tech/api/planets/'+planetId);
+            let planets = await response.json();
+
+            console.log(planets);
+
+            let planetName = document.getElementById('name');
+            planetName.innerHTML = planets.result.properties.name.toUpperCase();
+
+            let description = document.getElementById('description');
+            description.innerHTML = "Description: " + planets.result.description;
+
+            let climate = document.getElementById('climate');
+            climate.innerHTML = "Climate: " + planets.result.properties.climate;
+
+            let diameter = document.getElementById('diameter');
+            diameter.innerHTML = "Diameter: " + planets.result.properties.diameter;
+
+            let gravity = document.getElementById('gravity');
+            gravity.innerHTML = "Gravity: " + planets.result.properties.gravity;
+
+            let population = document.getElementById('population');
+            population.innerHTML = "Population: " + planets.result.properties.population;
+
+            let terrain = document.getElementById('terrain');
+            terrain.innerHTML = "Terrain: " + planets.result.properties.terrain;
+        }
+    </script>
+</head>
+<body>
+    <div class="box" id="main-container">
+        <div class="title" id="title">Star Wars Planets</div>
+        <input type="text" id="planet-id">
+        <button onclick="getPlanets()">Search</button>
+        <div class="name" id="name">Let's get know more about Star Wars Planets!</div>
+        <div class="description" id="description"></div>
+        <div class="climate" id="climate"></div>
+        <div class="diameter" id="diameter"></div>
+        <div class="gravity" id="gravity"></div>
+        <div class="population" id="population"></div>
+        <div class="terrain" id="terrain"></div>
+        <div class="footer">
+            <img src="https://qph.cf2.quoracdn.net/main-qimg-1cb790bd24bc368bf6d318bbc0eab5c2" id="picture" class="picture">
+            <p style="margin-top: 5px;">Try to input any number between 1 and 60</p>
+        </div>
+    </div>
+</body>
+</html>

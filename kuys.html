@@ -1,0 +1,101 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body{
+        align-items: center;
+        margin: auto;
+        padding: 20px;
+      }
+      .container {
+      height: 500px;
+      }
+
+      .title{
+      float: left;
+      font-size: small;
+      font-weight: bold;
+      font-family: 'Kanit', sans-serif;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 40px;
+      color: black;
+      left: 50%;
+      }
+
+
+      .box {
+        margin-left: 50px;
+        background-color: crimson;
+        margin: 10px;
+        border: 2px solid #777777;
+        border-radius: 25px;
+        height: 500px;
+        width: 300px;
+      }
+
+      .name {
+        text-align: center;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+
+      
+
+      .coffee {
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 16px;
+        padding: 5px;
+      }
+
+      .picture {
+        width: 200px;
+        height: 200px;
+      }
+
+      .picture-container{
+        text-align: center;
+      }
+    </style>
+
+    <script>
+      
+
+      const getCoffee = async() => {
+        let coffeeName = document.getElementById('coffeename').value;
+        let response = await fetch('https://api.sampleapis.com/coffee/hot' + coffeeName);
+        let coffee = await response.json();
+       
+        console.log(coffee);
+    }
+
+        let picture = document.getElementById('picture');
+        picture.src = coffee.hot.image;
+
+    
+
+    </script>
+  </head>
+  <body>
+    <input type="text" id="coffeename" />
+    <button onclick="getCoffee()">Please Enter Coffee name</button>
+    <div id="main-container" class="box">
+        <div class="title" id="title">DIFFERENT TYPES OF coffee</div>
+      <div class="name" id="name">---</div>
+      <div class="picture-container">
+        <img src="http://clipart-library.com/img/1695739.png" id="picture" class="picture">
+      </div>
+      <div class="coffee" id="coffee">Search for the name of the coffee</div>
+    </div>
+    
+  </body>
+</html>
